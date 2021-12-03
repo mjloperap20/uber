@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SeguridadService } from 'src/app/servicios/seguridad.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -32,11 +33,26 @@ export class LoginComponent implements OnInit {
     this.seguridadService.login(usuario, claveCifrada).subscribe(
       (data: any) => {
         this.seguridadService.almacenarSesion(data)
-        this.router.navigate(['/index']);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Bienvenido',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() =>{
+          this.router.navigate(['/index']);
+        })
+
       },
       (error: any) => {
         console.log(error)
-        alert("Datos inválidos");
+        Swal.fire({
+          title: 'Error!',
+          text: 'Datos invalidos',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
+
       }
       );
     }
