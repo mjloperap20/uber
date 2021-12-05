@@ -1,6 +1,6 @@
 <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
+      <a href="#" class="brand-logo">Trans4 - Uber</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li *ngIf="activeSession"><a routerLink="/admin/get">Administrador</a></li>
         <li *ngIf="activeSession"><a routerLink="/estaciones/get">Estaciones</a></li>
@@ -9,7 +9,7 @@
         <!-- Sesion -->
         <li *ngIf="!activeSession"><a routerLink="/seguridad/login">Login</a></li>
         <li *ngIf="!activeSession"><a routerLink="/admin/create">Registrarse</a></li>
-        <li *ngIf="activeSession"><a routerLink="/seguridad/cerrar-sesion">Cerrar Sesion</a></li>
+        <li *ngIf="activeSession"><a routerLink="/seguridad/logout">Cerrar Sesion</a></li>
       </ul>
     </div>
   </nav>
