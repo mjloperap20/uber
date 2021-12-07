@@ -24,6 +24,10 @@ export class EstacionesService {
       coord_x: estacion.coord_x,
       coord_y: estacion.coord_y,
       tipo: estacion.tipo
+    },{
+      headers: new HttpHeaders({
+        "Authorization": `Bearer ${this.token}`
+      })
     });
   }
 
