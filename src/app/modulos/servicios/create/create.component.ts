@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RutaModelo } from 'src/app/modelos/ruta.model';
 import { ServicioModelo } from 'src/app/modelos/servicio.model';
+import { RutasService } from 'src/app/servicios/rutas.service';
 import { ServiciosService } from 'src/app/servicios/servicios.service';
 import Swal from 'sweetalert2'
 
@@ -14,9 +16,13 @@ export class CreateComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private serviciosService: ServiciosService,
+    private rutasService: RutasService,
     private router: Router) { }
 
+    listadoRutas: RutaModelo[] = []
+
   ngOnInit(): void {
+    this.getAllRutas()
   }
 
   fgValidacion = this.fb.group({
@@ -32,7 +38,7 @@ export class CreateComponent implements OnInit {
   store(){
     let servicio = new ServicioModelo();
 
-    servicio.fecha = this.fgValidacion.controls["fecha"].value;
+    servicio.fecha = new Date(this.fgValidacion.controls["fecha"].value);
     servicio.hora_inicio = this.fgValidacion.controls["hora_inicio"].value;
     servicio.hora_fin = this.fgValidacion.controls["hora_fin"].value;
     servicio.placa_vehiculo = this.fgValidacion.controls["placa_vehiculo"].value;
@@ -49,6 +55,14 @@ export class CreateComponent implements OnInit {
       alert("Error en el envio");
     })
   }
+
+  getAllRutas(){
+    this.rutasService.getAll().subscribe((data: RutaModelo[]) => {
+      this.listadoRutas = data
+      console.log(data)
+    })
+  }
+
 
 
 

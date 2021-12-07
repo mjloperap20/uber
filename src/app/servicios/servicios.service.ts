@@ -19,7 +19,7 @@ export class ServiciosService {
     token: string = ''
 
     store(servicio: ServicioModelo): Observable<ServicioModelo> {
-      return this.http.post<ServicioModelo>(`${this.url}/servcios`, {
+      return this.http.post<ServicioModelo>(`${this.url}/servicios`, {
         fecha: servicio.fecha,
         hora_inicio: servicio.hora_inicio,
         hora_fin: servicio.hora_fin,

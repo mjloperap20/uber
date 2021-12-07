@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EstacionModelo } from 'src/app/modelos/estacion.model';
 import { RutaModelo } from 'src/app/modelos/ruta.model';
 import { RutasService } from 'src/app/servicios/rutas.service';
+import { EstacionesService } from 'src/app/servicios/estaciones.service';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -14,6 +16,7 @@ export class CreateComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private rutasService: RutasService,
+    private estacionesService: EstacionesService,
     private router: Router) { }
 
     fgValidacion = this.fb.group({
@@ -22,7 +25,10 @@ export class CreateComponent implements OnInit {
       destino: ['', [Validators.required]],
     });
 
+    listadoEstaciones: EstacionModelo[] = []
+
   ngOnInit(): void {
+    this.getAllEstaciones()
   }
 
   store(){
@@ -38,6 +44,13 @@ export class CreateComponent implements OnInit {
     (error: any) => {
       console.log(error)
       alert("Error en el envio");
+    })
+  }
+
+  getAllEstaciones(){
+    this.estacionesService.getAll().subscribe((data: EstacionModelo[]) => {
+      this.listadoEstaciones = data
+      console.log(data)
     })
   }
 
