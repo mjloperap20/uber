@@ -11,7 +11,7 @@ const routes: Routes = [
     component: CreateComponent,
     canActivate: [SessionGuard]
   },{
-    path: 'edit:/id',
+    path: 'edit/:id',
     component: EditComponent,
     canActivate: [SessionGuard]
   },{

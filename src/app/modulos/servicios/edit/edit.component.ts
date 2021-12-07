@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RutaModelo } from 'src/app/modelos/ruta.model';
 import { ServicioModelo } from 'src/app/modelos/servicio.model';
+import { RutasService } from 'src/app/servicios/rutas.service';
 import { ServiciosService } from 'src/app/servicios/servicios.service';
 import Swal from 'sweetalert2'
 
@@ -14,6 +16,7 @@ export class EditComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private serviciosService: ServiciosService,
+    private rutasService: RutasService,
     private router: Router,
     private route: ActivatedRoute) { }
 
@@ -27,13 +30,15 @@ export class EditComponent implements OnInit {
       dinero_recogido: ['', [Validators.required]],
       ruta: ['', [Validators.required]],
     });
- 
+
     id: string=''
+
+    listadoRutas: RutaModelo[] = []
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params["id"]
     this.buscarRegistro(this.id);
-
+    this.getAllRutas()
   }
 
   buscarRegistro(id: string){
@@ -71,6 +76,12 @@ export class EditComponent implements OnInit {
     })
   }
 
+  getAllRutas(){
+    this.rutasService.getAll().subscribe((data: RutaModelo[]) => {
+      this.listadoRutas = data
+      console.log(data)
+    })
+  }
 
 
 }
