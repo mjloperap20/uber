@@ -1,17 +1,15 @@
 <nav class="teal lighten-2">
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">
-        <img class="responsive-img" width="60" src="https://image.freepik.com/vector-gratis/vehiculo-isometrico_24877-50902.jpg">
-      </a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li *ngIf="activeSession"><a routerLink="/admin/get">Administrador</a></li>
-        <li *ngIf="activeSession"><a routerLink="/estaciones/get">Estaciones</a></li>
-        <li *ngIf="activeSession"><a routerLink="/rutas/get">Rutas</a></li>
-        <li *ngIf="activeSession"><a routerLink="/servicios/get">Servicios</a></li>
-        <!-- Sesion -->
-        <li *ngIf="!activeSession"><a routerLink="/seguridad/login">Login</a></li>
-        <li *ngIf="!activeSession"><a routerLink="/admin/create">Registrarse</a></li>
-        <li *ngIf="activeSession"><a routerLink="/seguridad/logout">Cerrar Sesion</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo"> <img class="responsive-img" width="80" src="https://i.ibb.co/sV3mCbK/Imagen1.png"> </a>    
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li *ngIf="activeSession"><a routerLink="/admin/get">Administrador</a></li>
+      <li *ngIf="activeSession"><a routerLink="/estaciones/get">Estaciones</a></li>
+      <li *ngIf="activeSession"><a routerLink="/rutas/get">Rutas</a></li>
+      <li *ngIf="activeSession"><a routerLink="/servicios/get">Servicios</a></li>
+      <!-- Sesion -->
+      <li *ngIf="!activeSession"><a routerLink="/seguridad/login">Login</a></li>
+      <li *ngIf="!activeSession"><a routerLink="/admin/create">Registrarse</a></li>
+      <li *ngIf="activeSession"><a routerLink="/seguridad/logout">Cerrar Sesion</a></li>
+    </ul>
+  </div>
+</nav>
